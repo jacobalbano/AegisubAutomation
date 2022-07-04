@@ -8,8 +8,11 @@ script_version = "1"
 function doIt(subs, sel)
     for _, i in ipairs(sel) do
         local line = subs[i]
-        line.text = "{\\i1}" .. line.text:sub(2) .. "{\\i0}"
-        subs[i] = line
+		local rStart, rEnd = line.text:find("^%s*/%s*")
+		if (rEnd ~= nil) then
+			line.text = "{\\i1}" .. line.text:sub(rEnd + 1) .. "{\\i0}"
+			subs[i] = line
+		end
     end
     aegisub.set_undo_point(script_name)
 end

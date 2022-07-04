@@ -37,7 +37,7 @@ function doit(subs, sel)
 		if parts ~= nil and #parts > 1 then -- don't support seconds only
 			local t = timePartsToMs(parts)
 			line.start_time = t
-			line.end_time = t
+			line.end_time = t + 100
 			line.text = text:trim()
 			subs[i] = line
 		end
